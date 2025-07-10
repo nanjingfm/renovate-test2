@@ -74,7 +74,7 @@ RUN set -eux \
   && /tmp/apply-jar-patch.sh /data/patches /data/sonarqube
 
 
-FROM eclipse-temurin:17-jdk-jammy
+FROM docker-mirrors.alauda.cn/library/eclipse-temurin:17.0.10_7-jre-jammy
 
 LABEL io.k8s.description="SonarQube Community Build is a self-managed, automatic code review tool that systematically helps you deliver Clean Code."
 LABEL io.openshift.min-cpu=400m
