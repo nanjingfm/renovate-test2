@@ -3,5 +3,13 @@
   "extends": [
     "github>AlaudaDevops/renovate-config:base"
   ],
-  "baseBranches": ["main", "master"]
+  "baseBranches": ["main", "master"],
+  "packageRules": [
+    {
+      "matchManagers": ["Dockerfile"],
+      "matchUpdateTypes": ["patch", "pinDigest"],
+      "enabled": true,
+      "automerge": true
+    }
+  ]
 }
