@@ -3,7 +3,7 @@
   "extends": ["config:recommended"],
   "packageRules": [
     {
-      "matchPackageNames": ["*"],
+      "matchUpdateTypes": ["major"],
       "enabled": false
     },
     {
