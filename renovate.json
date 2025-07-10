@@ -1,15 +1,31 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "github>AlaudaDevops/renovate-config:base"
-  ],
-  "baseBranches": ["main", "master"],
+  "extends": ["config:recommended"],
   "packageRules": [
+    {
+      "matchPackageNames": ["*"],
+      "enabled": false
+    },
+    {
+      "matchManagers": ["git-submodules"],
+      "enabled": true,
+      "automerge": true
+    },
     {
       "matchManagers": ["dockerfile"],
       "matchUpdateTypes": ["patch", "pinDigest"],
       "enabled": true,
       "automerge": true
     }
-  ]
+  ],
+  "dependencyDashboardOSVVulnerabilitySummary": "all",
+  "vulnerabilityAlerts": {
+    "enabled": true
+  },
+  "osvVulnerabilityAlerts": true,
+  "labels": ["dependencies"],
+  "git-submodules": {
+    "enabled": true
+  },
+  "baseBranches": ["main"]
 }
