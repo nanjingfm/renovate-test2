@@ -1,5 +1,5 @@
 # source: https://github.com/SonarSource/sonarqube/blob/170bd61e5e75fb3668dd31dc71570f5e40a800fd/.cirrus/Dockerfile#L1
-FROM docker-mirrors.alauda.cn/library/eclipse-temurin:17.0.10_7-jre-jammy
+FROM eclipse-temurin:17.0.10_7-jre-jammy
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -74,7 +74,7 @@ RUN set -eux \
   && /tmp/apply-jar-patch.sh /data/patches /data/sonarqube
 
 
-FROM docker-mirrors.alauda.cn/library/eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:17-jdk-jammy
 
 LABEL io.k8s.description="SonarQube Community Build is a self-managed, automatic code review tool that systematically helps you deliver Clean Code."
 LABEL io.openshift.min-cpu=400m
