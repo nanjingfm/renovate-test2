@@ -1,5 +1,5 @@
 # source: https://github.com/SonarSource/sonarqube/blob/170bd61e5e75fb3668dd31dc71570f5e40a800fd/.cirrus/Dockerfile#L1
-FROM docker-mirrors.alauda.cn/library/eclipse-temurin:17-jdk-jammy as builder
+FROM docker-mirrors.alauda.cn/library/eclipse-temurin:17.0.10_7-jre-jammy
 
 ENV DEBIAN_FRONTEND=noninteractive
 
