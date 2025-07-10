@@ -4,7 +4,6 @@
   "packageRules": [
     {
       "matchPackageNames": ["*"],
-      "matchManagers": ["!dockerfile"],
       "enabled": false
     },
     {
