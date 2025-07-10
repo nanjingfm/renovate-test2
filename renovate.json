@@ -12,13 +12,13 @@
       "automerge": true
     },
     {
-      "matchDatasources": ["docker"],
+      "matchManagers": ["custom.regex"],
       "matchUpdateTypes": ["patch", "pinDigest"],
       "enabled": true,
       "automerge": true
     },
     {
-      "matchDatasources": ["docker"],
+      "matchManagers": ["custom.regex"],
       "matchUpdateTypes": ["minor"],
       "enabled": true,
       "automerge": false
