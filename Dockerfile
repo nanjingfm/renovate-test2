@@ -1,5 +1,5 @@
 # source: https://github.com/SonarSource/sonarqube/blob/170bd61e5e75fb3668dd31dc71570f5e40a800fd/.cirrus/Dockerfile#L1
-FROM eclipse-temurin:17.0.10_7-jre-jammy
+FROM eclipse-temurin:17.0.15_6-jre-jammy
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -74,7 +74,7 @@ RUN set -eux \
   && /tmp/apply-jar-patch.sh /data/patches /data/sonarqube
 
 # renovate: datasource=docker depName=eclipse-temurin
-ARG IMAGE_VERSION=17.0.10_7-jre-jammy
+ARG IMAGE_VERSION=17.0.15_6-jre-jammy
 FROM docker-mirrors.alauda.cn/library/eclipse-temurin:${IMAGE_VERSION}
 
 LABEL io.k8s.description="SonarQube Community Build is a self-managed, automatic code review tool that systematically helps you deliver Clean Code."
