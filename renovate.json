@@ -6,7 +6,7 @@
   "baseBranches": ["main", "master"],
   "packageRules": [
     {
-      "matchManagers": ["Dockerfile"],
+      "matchManagers": ["dockerfile"],
       "matchUpdateTypes": ["patch", "pinDigest"],
       "enabled": true,
       "automerge": true
