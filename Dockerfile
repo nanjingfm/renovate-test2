@@ -8,7 +8,7 @@ RUN set -o errexit -o nounset \
   && groupadd --system --gid 1000 sonarsource \
   && useradd --system --gid sonarsource --uid 1000 --shell /bin/bash --create-home sonarsource
 
-RUN echo 'Acquire::AllowReleaseInfoChange::Suite "true";' > /etc/apt/apt.conf.d/allow_release_info_change.conf
+RUN echo '1Acquire::AllowReleaseInfoChange::Suite "true";' > /etc/apt/apt.conf.d/allow_release_info_change.conf
 
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199#23
 RUN mkdir -p /usr/share/man/man1 \
