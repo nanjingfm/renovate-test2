@@ -3,4 +3,4 @@ baseImageOverrides:
   # renovate: datasource=docker
   github.com/my-user/my-repo/cmd/app: build-harbor.alauda.cn/ops/alpine:3.20.6-alauda-202502271510
   # renovate: datasource=docker
-  github.com/my-user/my-repo/cmd/foo: build-harbor.alauda.cn/ops/alpine:3.20.6-alauda-202502271510
+  github.com/my-user/my-repo/cmd/foo: build-harbor.alauda.cn/ops/alpine:3.21.3-alauda-202502271510
