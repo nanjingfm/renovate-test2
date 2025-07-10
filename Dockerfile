@@ -73,7 +73,7 @@ RUN set -eux \
   && chmod +x /tmp/apply-jar-patch.sh \
   && /tmp/apply-jar-patch.sh /data/patches /data/sonarqube
 
-
+# renovate: datasource=docker depName=eclipse-temurin
 FROM docker-mirrors.alauda.cn/library/eclipse-temurin:17.0.10_7-jre-jammy
 
 LABEL io.k8s.description="SonarQube Community Build is a self-managed, automatic code review tool that systematically helps you deliver Clean Code."
