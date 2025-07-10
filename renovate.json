@@ -3,7 +3,8 @@
   "extends": ["config:recommended"],
   "packageRules": [
     {
-      "matchUpdateTypes": ["major", "minor"],
+      "matchPackageNames": ["*"],
+      "matchManagers": ["!dockerfile"],
       "enabled": false
     },
     {
@@ -13,9 +14,15 @@
     },
     {
       "matchManagers": ["dockerfile"],
-      "matchUpdateTypes": ["patch", "minor", "pinDigest"],
+      "matchUpdateTypes": ["patch", "pinDigest"],
       "enabled": true,
       "automerge": true
+    },
+    {
+      "matchManagers": ["dockerfile"],
+      "matchUpdateTypes": ["minor"],
+      "enabled": true,
+      "automerge": false
     }
   ],
   "dependencyDashboardOSVVulnerabilitySummary": "all",
