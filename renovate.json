@@ -12,7 +12,7 @@
       "automerge": true
     },
     {
-      "matchDatasources":["maven", "docker", "github-release"],
+      "matchDatasources":["maven", "docker", "github-releases"],
       "enabled": true
     },
     {
