@@ -63,8 +63,8 @@ RUN mkdir -p /data/patches \
   && ls -al /data/sonarqube
 
 COPY --chown=sonarsource:sonarsource image/community-build/apply-jar-patch.sh /tmp/apply-jar-patch.sh
-# renovate: datasource=maven depName=net.minidev/json-smart
-ARG JSON_SMART_VERSION=2.5.0
+# renovate: datasource=maven depName=net.minidev/json-smart currentValue=2.4.0
+ARG JSON_SMART_VERSION=2.4.0
 # renovate: datasource=maven depName=io.netty/netty-handler
 ARG NETTY_HANDLER_VERSION=4.1.115.Final
 RUN set -eux \
