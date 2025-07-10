@@ -12,13 +12,15 @@
       "automerge": true
     },
     {
-      "matchManagers": ["custom.regex"],
+      "matchDatasources":["maven", "docker", "github-release"],
+      "enabled": true
+    },
+    {
       "matchUpdateTypes": ["patch", "pinDigest"],
       "enabled": true,
       "automerge": true
     },
     {
-      "matchManagers": ["custom.regex"],
       "matchUpdateTypes": ["minor"],
       "enabled": true,
       "automerge": false
