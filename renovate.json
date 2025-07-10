@@ -4,7 +4,8 @@
   "packageRules": [
     {
       "matchPackageNames": ["*"],
-      "enabled": false
+      "enabled": false,
+      "automerge": false
     },
     {
       "matchManagers": ["git-submodules"],
@@ -12,18 +13,58 @@
       "automerge": true
     },
     {
-      "matchDatasources":["maven", "docker", "github-releases"],
+      "matchDatasources":["docker", "github-releases", "go"],
       "enabled": true
     },
     {
-      "matchUpdateTypes": ["patch", "pinDigest"],
+      "matchDatasources":["docker"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "matchDatasources":["docker"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest"],
       "enabled": true,
       "automerge": true
     },
     {
+      "matchDatasources":["github-releases"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "matchDatasources":["github-releases"],
       "matchUpdateTypes": ["minor"],
       "enabled": true,
       "automerge": false
+    },
+    {
+      "matchDatasources":["github-releases"],
+      "matchUpdateTypes": ["patch"],
+      "enabled": true,
+      "automerge": true
+    },
+    {
+      "matchDatasources":["go"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "matchDatasources":["go"],
+      "matchUpdateTypes": ["minor"],
+      "enabled": true,
+       "automerge": false
+    },
+    {
+      "matchDatasources":["go"],
+      "matchUpdateTypes": ["patch"],
+      "enabled": true,
+      "automerge": true
+    },
+    {
+      "matchDatasources":["go"],
+      "matchUpdateTypes": ["digest"],
+      "enabled": false
     }
   ],
   "dependencyDashboardOSVVulnerabilitySummary": "all",
