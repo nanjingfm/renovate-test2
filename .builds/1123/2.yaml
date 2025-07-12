@@ -1,0 +1,113 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: operator-sdk-integration-test
+  annotations:
+    pipelinesascode.tekton.dev/on-cel-expression: |-
+      (target_branch == "main" || target_branch.startsWith("release-")) &&
+      !(files.all.all(f, f == 'CHANGELOG.md' || f.startsWith('docs/')))
+    pipelinesascode.tekton.dev/max-keep-runs: "5"
+spec:
+  taskRunSpecs:
+    - pipelineTaskName: run-test
+      stepOverrides:
+        - name: script
+          resources:
+            limits:
+              cpu: "4"
+              memory: 4Gi
+  pipelineRef:
+    resolver: git
+    params:
+      - name: serverURL
+        value: https://gitlab-ce.alauda.cn
+      - name: scmType
+        value: gitlab
+      - name: org
+        value: devops
+      - name: repo
+        value: edge
+      - name: revision
+        value: master
+      - name: pathInRepo
+        value: pipelines/vcluster-integration-test/0.1/vcluster-integration-test.yaml
+      - name: token
+        value: gitlab-ce.kauto
+      - name: tokenKey
+        value: password
+
+  params:
+    - name: git-revision
+      value:
+        url: "{{ repo_url }}"
+        branch: "{{ source_branch }}"
+        commit: "{{ revision }}"
+    - name: test
+      value:
+        # renovate: datasource=docker depName=docker.io/library/golang
+        image: docker-mirrors.alauda.cn/library/golang:1.24.0
+        # renovate: datasource=docker depName=nginx
+        image: 1.28.0-alpine
+        command: |
+          set -x
+          cd $(workspaces.source.path)/test
+
+          # install dependencies
+          mkdir bin
+          export KUBECTL_VERSION=1.28.2
+          curl -sfL https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o ./bin/kubectl
+          chmod +x ./bin/*
+          export PATH=$(pwd)/bin:$PATH
+          kubectl version --client
+
+          export KUBECONFIG=$(workspaces.config.path)/vcluster-config
+          kubectl config view
+
+          export GOPROXY=https://build-nexus.alauda.cn/repository/golang/,direct
+          export GOMAXPROCS=4
+          export KO_DOCKER_REPO=build-harbor.alauda.cn/test
+
+          # copy docker config
+          /katanomi/bin/ktn-settings copy docker --always-match=true ~/.docker/config.json 2>/dev/null || true
+
+          # avoid `detected dubious ownership in repository at`
+          git config --global --add safe.directory "$(workspaces.source.path)"
+
+          echo "run integration tests..."
+          kubectl create ns bdd-testing || true
+          make deploy-wait
+          make generate-config
+          REPORT=allure make test-smoke
+    - name: report
+      value:
+        command: |
+          cd $(workspaces.source.path)/test
+          allure generate --clean
+
+          echo "Listing contents of report directory"
+          ls -al
+        path: test/allure-report
+  workspaces:
+    - name: kube-config
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteMany
+          resources:
+            requests:
+              storage: 50Mi
+    - name: cache
+      persistentVolumeClaim:
+        claimName: build-cache
+      subPath: golang
+    - name: source
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteMany
+          resources:
+            requests:
+              storage: 1Gi
+    - name: upload-conf
+      secret:
+        secretName: upload-allure-report-conf
