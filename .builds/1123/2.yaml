@@ -54,7 +54,7 @@ spec:
       description: ruby version
       type: string
       # renovate: datasource=github-tags depName=rust-lang/rust
-      default: "1.73.0"
+      default: "1.88.0"
     - name: GO_VERSION
       type: string
       # renovate: datasource=github-tags depName=golang/go extractVersion=^go(?<version>[\d.]+)$
