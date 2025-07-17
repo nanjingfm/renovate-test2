@@ -37,6 +37,28 @@ spec:
         value: password
 
   params:
+    - name: RUBY_VERSION
+      description: ruby version
+      type: string
+      # renovate: datasource=github-releases depName=ruby/ruby
+      default: "3.2.7"
+    - name: RUBYGEMS_VERSION
+      type: string
+      # renovate: datasource=github-releases depName=rubygems/rubygems extractVersion=^v(?<version>[\d.]+)$
+      default: "3.6.6"
+    - name: BUNDLER_VERSION
+      type: string
+      # renovate: datasource=github-releases depName=rubygems/rubygems extractVersion=^bundler-v(?<version>[\d.]+)$
+      default: "2.6.6"
+        - name: RUST_VERSION
+      description: ruby version
+      type: string
+      # renovate: datasource=github-tags depName=rust-lang/rust
+      default: "1.73.0"
+    - name: GO_VERSION
+      type: string
+      # renovate: datasource=github-tags depName=golang/go extractVersion=^go(?<version>[\d.]+)$
+      default: "1.24.4"
     - name: git-revision
       value:
         url: "{{ repo_url }}"
