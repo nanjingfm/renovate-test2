@@ -50,7 +50,7 @@ spec:
       type: string
       # renovate: datasource=github-releases depName=rubygems/rubygems extractVersion=^bundler-v(?<version>[\d.]+)$
       default: "2.6.6"
-        - name: RUST_VERSION
+    - name: RUST_VERSION
       description: ruby version
       type: string
       # renovate: datasource=github-tags depName=rust-lang/rust
