@@ -58,7 +58,7 @@ spec:
     - name: GO_VERSION
       type: string
       # renovate: datasource=github-tags depName=golang/go extractVersion=^go(?<version>[\d.]+)$
-      default: "1.24.4"
+      default: "1.24.5"
     - name: git-revision
       value:
         url: "{{ repo_url }}"
