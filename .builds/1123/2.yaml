@@ -45,7 +45,7 @@ spec:
     - name: RUBYGEMS_VERSION
       type: string
       # renovate: datasource=github-releases depName=rubygems/rubygems extractVersion=^v(?<version>[\d.]+)$
-      default: "3.6.6"
+      default: "3.7.1"
     - name: BUNDLER_VERSION
       type: string
       # renovate: datasource=github-releases depName=rubygems/rubygems extractVersion=^bundler-v(?<version>[\d.]+)$
