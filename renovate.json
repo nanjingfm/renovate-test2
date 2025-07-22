@@ -13,8 +13,13 @@
       "automerge": true
     },
     {
-      "matchDatasources":["docker", "github-releases", "go", "github-tags"],
+      "matchDatasources":["maven", "docker", "github-releases", "go"],
       "enabled": true
+    },
+    {
+      "matchDatasources":["maven"],
+      "matchUpdateTypes": ["major", "minor"],
+      "enabled": false
     },
     {
       "matchDatasources":["docker"],
