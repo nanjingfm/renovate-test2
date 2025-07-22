@@ -45,11 +45,11 @@ spec:
     - name: RUBYGEMS_VERSION
       type: string
       # renovate: datasource=github-releases depName=rubygems/rubygems extractVersion=^v(?<version>[\d.]+)$
-      default: "3.6.6"
+      default: "3.6.9"
     - name: BUNDLER_VERSION
       type: string
       # renovate: datasource=github-releases depName=rubygems/rubygems extractVersion=^bundler-v(?<version>[\d.]+)$
-      default: "2.6.6"
+      default: "2.6.9"
     - name: RUST_VERSION
       description: ruby version
       type: string
