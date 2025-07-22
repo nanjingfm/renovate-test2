@@ -1,6 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": ["config:recommended", "customManagers:dockerfileVersions"],
+  "enabledManagers": ["docker", "gomod", "github-releases", "github-tags", "regex"],
+  "ignorePaths": [
+    "**/testdata/**",
+    "**/examples/**",
+    "test/**",
+    "testing/**"
+  ],
+  "gitIgnoredAuthors": ["alaudabot"],
   "packageRules": [
     {
       "matchPackageNames": ["*"],
@@ -13,18 +21,18 @@
       "automerge": true
     },
     {
-      "matchDatasources":["maven", "docker", "github-releases", "go"],
+      "matchDatasources":["maven", "docker", "github-releases", "go", "golang-version"],
       "enabled": true
     },
     {
-      "matchDatasources":["maven"],
       "matchUpdateTypes": ["major", "minor"],
-      "enabled": false
+      "enabled": false,
+      "automerge": false
     },
     {
-      "matchDatasources":["docker"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
+      "matchUpdateTypes": ["patch"],
+      "enabled": true,
+      "automerge": true
     },
     {
       "matchDatasources":["docker"],
@@ -34,35 +42,17 @@
     },
     {
       "matchDatasources":["github-releases"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
-    },
-    {
-      "matchDatasources":["github-releases"],
       "matchUpdateTypes": ["minor"],
       "enabled": true,
       "automerge": false
     },
     {
-      "matchDatasources":["github-releases"],
-      "matchUpdateTypes": ["patch"],
-      "enabled": true,
-      "automerge": true
-    },
-    {
       "matchDatasources":["go"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
-    },
-    {
-      "matchDatasources":["go"],
+      "matchPackageNames": [
+        "golang.org/x/**",
+        "go"
+      ],
       "matchUpdateTypes": ["minor"],
-      "enabled": true,
-       "automerge": false
-    },
-    {
-      "matchDatasources":["go"],
-      "matchUpdateTypes": ["patch"],
       "enabled": true,
       "automerge": true
     },
@@ -70,6 +60,47 @@
       "matchDatasources":["go"],
       "matchUpdateTypes": ["digest"],
       "enabled": false
+    },
+    {
+      "matchBaseBranches": ["release-*", "alauda-*"],
+      "extends":["security:only-security-updates"],
+      "automerge": true
+    },
+    {
+      "matchDatasources":["golang-version"],
+      "enabled": true
+    },
+    {
+      "matchDatasources":["golang-version"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "enabled": true,
+      "automerge": true
+    },
+    {
+      "groupName": "all patch dependencies",
+      "groupSlug": "patch-upgrades",
+      "matchPackageNames": ["*"],
+      "matchUpdateTypes": [
+        "patch"
+      ]
+    },
+    {
+      "matchDatasources":["go"],
+      "matchPackageNames": [
+        "golang.org/x/**",
+        "go"
+      ],
+      "groupName": "golang official packages",
+      "groupSlug": "go-official-packages"
+    },
+    {
+      "matchPackageNames": [
+        "k8s.io/**",
+        "sigs.k8s.io/**",
+        "github.com/kubernetes/**",
+        "kubernetes/**"
+      ],
+      "groupName": "kubernetes"
     }
   ],
   "dependencyDashboardOSVVulnerabilitySummary": "all",
@@ -81,5 +112,29 @@
   "git-submodules": {
     "enabled": true
   },
-  "baseBranches": ["main"]
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^\\.(tekton|builds?)\\/.*\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-zA-Z0-9-._]+?) depName=(?<depName>[^\\s]+?)(?:\\s+(?:lookupName|packageName)=(?<packageName>[^\\s]+?))?(?:\\s+versioning=(?<versioning>[^\\s]+?))?(?:\\s+extractVersion=(?<extractVersion>[^\\s]+?))?(?:\\s+registryUrl=(?<registryUrl>[^\\s]+?))?\\s*\\n\\s*default:\\s*[\"']?(?<currentValue>[0-9a-zA-Z._-]+)[\"']?"
+      ],
+      "description": "Update images in Tekton pipelines and build scripts. For `build` and `tekton` files, add `# renovate: datasource=docker` comment above each image entry."
+    },
+    {
+      "customType": "regex",
+      "datasourceTemplate": "docker",
+      "managerFilePatterns": [
+        "/(^|/)\\.ko\\.ya?ml$/",
+        "/(^|/)ko\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "defaultBaseImage\\s*:\\s*(?<depName>[^:\\s]+?)(?::(?<currentValue>[^\\s]+?))?\\s*$",
+        "# renovate: datasource=docker\\s+[^\\s:]+\\s*:\\s*(?<depName>[^:\\s]+?)(?::(?<currentValue>[^\\s]+?))?\\s*$"
+      ],
+      "description": "Update `defaultBaseImage` and images in `baseImageOverrides` in ko configuration files. For `baseImageOverrides`, add `# renovate: datasource=docker` comment above each image entry."
+    }
+  ]
 }
