@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", "customManagers:dockerfileVersions"],
-  "enabledManagers": ["docker", "gomod", "github-releases", "github-tags", "regex"],
+  "enabledManagers": ["dockerfile", "gomod", "regex"],
   "ignorePaths": [
     "**/testdata/**",
     "**/examples/**",
