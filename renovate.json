@@ -74,32 +74,6 @@
       "matchUpdateTypes": ["minor", "patch"],
       "enabled": true,
       "automerge": true
-    },
-    {
-      "groupName": "all patch dependencies",
-      "groupSlug": "patch-upgrades",
-      "matchPackageNames": ["*"],
-      "matchUpdateTypes": [
-        "patch"
-      ]
-    },
-    {
-      "matchDatasources":["go"],
-      "matchPackageNames": [
-        "golang.org/x/**",
-        "go"
-      ],
-      "groupName": "golang official packages",
-      "groupSlug": "go-official-packages"
-    },
-    {
-      "matchPackageNames": [
-        "k8s.io/**",
-        "sigs.k8s.io/**",
-        "github.com/kubernetes/**",
-        "kubernetes/**"
-      ],
-      "groupName": "kubernetes"
     }
   ],
   "dependencyDashboardOSVVulnerabilitySummary": "all",
