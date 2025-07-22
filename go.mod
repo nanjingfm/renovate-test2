@@ -20,7 +20,7 @@ require (
 	github.com/spf13/pflag v1.0.6
 	github.com/yuin/gopher-lua v1.1.1
 	go.yaml.in/yaml/v3 v3.0.4
-	golang.org/x/net v0.32.0
+	golang.org/x/net v0.38.0
 	golang.org/x/text v0.27.0
 	gopkg.in/op/go-logging.v1 v1.0.0-20160211212156-b2cb9fa56473
 )
