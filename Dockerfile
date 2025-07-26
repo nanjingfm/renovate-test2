@@ -22,6 +22,9 @@ RUN mkdir -p /usr/share/man/man1 \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+# renovate: datasource=github-releases depName=tkn packageName=AlaudaDevops/tektoncd-cli
+ARG TKN_VERSION=v0.34.1-alauda-17
+
 ARG NODE_MAJOR=18
 RUN DISTRO="$(lsb_release -s -c)" \
   && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
