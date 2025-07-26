@@ -23,7 +23,7 @@ RUN mkdir -p /usr/share/man/man1 \
   && rm -rf /var/lib/apt/lists/*
 
 # renovate: datasource=github-releases depName=tkn packageName=AlaudaDevops/tektoncd-cli
-ARG TKN_VERSION=v0.34.1-alauda-17
+ARG TKN_VERSION=v0.41.2-alauda-1
 
 ARG NODE_MAJOR=18
 RUN DISTRO="$(lsb_release -s -c)" \
