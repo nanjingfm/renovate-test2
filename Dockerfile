@@ -23,7 +23,7 @@ RUN mkdir -p /usr/share/man/man1 \
   && rm -rf /var/lib/apt/lists/*
 
 # renovate: datasource=github-releases depName=tkn packageName=AlaudaDevops/tektoncd-cli
-ARG TKN_VERSION=v0.34.1-alauda-17
+ARG TKN_VERSION=v0.34.1-alauda-21
 
 ARG NODE_MAJOR=18
 RUN DISTRO="$(lsb_release -s -c)" \
@@ -67,7 +67,7 @@ RUN mkdir -p /data/patches \
 
 COPY --chown=sonarsource:sonarsource image/community-build/apply-jar-patch.sh /tmp/apply-jar-patch.sh
 # renovate: datasource=github-releases depName=loft-sh/vcluster
-ARG VCLUSTER_VERSION=0.24.0
+ARG VCLUSTER_VERSION=0.24.2
 # renovate: datasource=maven depName=netty-handler lookupName=io.netty:netty-handler
 ARG NETTY_HANDLER_VERSION=4.1.122.Final
 RUN set -eux \

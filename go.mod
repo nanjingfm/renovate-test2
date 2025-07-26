@@ -1,6 +1,6 @@
 module dep
 
-go 1.24.4
+go 1.24.5
 
 require (
 	github.com/a8m/envsubst v1.4.3
@@ -17,7 +17,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.2.4
 	github.com/pkg/diff v0.0.0-20241224192749-4e6772a4315c
 	github.com/spf13/cobra v1.9.1
-	github.com/spf13/pflag v1.0.6
+	github.com/spf13/pflag v1.0.7
 	github.com/yuin/gopher-lua v1.1.1
 	go.yaml.in/yaml/v3 v3.0.4
 	golang.org/x/net v0.32.0
@@ -27,7 +27,7 @@ require (
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	golang.org/x/sys v0.34.0 // indirect
 )
