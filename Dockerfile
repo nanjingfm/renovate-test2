@@ -67,7 +67,7 @@ RUN mkdir -p /data/patches \
 
 COPY --chown=sonarsource:sonarsource image/community-build/apply-jar-patch.sh /tmp/apply-jar-patch.sh
 # renovate: datasource=github-releases depName=loft-sh/vcluster
-ARG VCLUSTER_VERSION=0.24.0
+ARG VCLUSTER_VERSION=0.26.0
 # renovate: datasource=maven depName=netty-handler lookupName=io.netty:netty-handler
 ARG NETTY_HANDLER_VERSION=4.1.122.Final
 RUN set -eux \
